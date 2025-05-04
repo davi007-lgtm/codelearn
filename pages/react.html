@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos React</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#jsx">JSX</a></li>
+            <li><a href="#componentes">Componentes</a></li>
+            <li><a href="#props">Props</a></li>
+            
+            <li class="nav-category">Estado y Ciclo de Vida</li>
+            <li><a href="#estado">Estado</a></li>
+            <li><a href="#efectos">Efectos</a></li>
+            <li><a href="#contexto">Contexto</a></li>
+            <li><a href="#refs">Referencias</a></li>
+            
+            <li class="nav-category">Hooks</li>
+            <li><a href="#useState">useState</a></li>
+            <li><a href="#useEffect">useEffect</a></li>
+            <li><a href="#useContext">useContext</a></li>
+            <li><a href="#customHooks">Custom Hooks</a></li>
+            
+            <li class="nav-category">Routing y Forms</li>
+            <li><a href="#router">React Router</a></li>
+            <li><a href="#forms">Formularios</a></li>
+            <li><a href="#validacion">Validación</a></li>
+            
+            <li class="nav-category">Herramientas</li>
+            <li><a href="#vite">Vite</a></li>
+            <li><a href="#testing">Testing</a></li>
+            <li><a href="#deploy">Deployment</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">React</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es React?</h2>
+                <p>React es una biblioteca de JavaScript para construir interfaces de usuario. Desarrollada por Facebook, React permite crear aplicaciones web interactivas y eficientes mediante componentes reutilizables.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Basado en componentes</li>
+                        <li>Virtual DOM para mejor rendimiento</li>
+                        <li>Flujo de datos unidireccional</li>
+                        <li>Gran ecosistema y comunidad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración del Proyecto</h2>
+                <pre><code># Crear nuevo proyecto con Vite
+npm create vite@latest mi-app -- --template react
+
+# Instalar dependencias
+cd mi-app
+npm install
+
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Estructura del proyecto
+mi-app/
+  ├── src/
+  │   ├── components/
+  │   ├── App.jsx
+  │   └── main.jsx
+  ├── public/
+  └── package.json</code></pre>
+            </div>
+        </section>
+
+        <section id="jsx" class="section">
+            <h2 class="typing-effect">JSX</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Sintaxis Básica</h2>
+                <pre><code>// JSX básico
+function Saludo() {
+  return (
+    <div>
+      <h1>¡Hola Mundo!</h1>
+      <p>Bienvenido a React</p>
+    </div>
+  );
+}
+
+// Expresiones en JSX
+function Calculadora() {
+  const a = 5;
+  const b = 3;
+  return (
+    <div>
+      <p>{a} + {b} = {a + b}</p>
+    </div>
+  );
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Atributos y Eventos</h2>
+                <pre><code>// Atributos HTML en JSX
+function Boton() {
+  return (
+    <button 
+      className="btn-primary"
+      disabled={false}
+      style={{ color: 'blue' }}
+    >
+      Clickeame
+    </button>
+  );
+}
+
+// Manejo de eventos
+function Contador() {
+  const handleClick = () => {
+    alert('¡Botón clickeado!');
+  };
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="componentes" class="section">
+            <h2 class="typing-effect">Componentes</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Componentes Funcionales</h2>
+                <pre><code>// Componente funcional básico
+function Saludo({ nombre }) {
+  return <h1>Hola, {nombre}!</h1>;
+}
+
+// Componente con múltiples elementos
+function Tarjeta() {
+  return (
+    <div className="card">
+      <img src="avatar.jpg" alt="Avatar" />
+      <div className="card-content">
+        <h2>Título</h2>
+        <p>Contenido de la tarjeta</p>
+      </div>
+    </div>
+  );
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Composición de Componentes</h2>
+                <pre><code>// Componente padre
+function App() {
+  return (
+    <div>
+      <Header />
+      <MainContent />
+      <Footer />
+    </div>
+  );
+}
+
+// Componentes hijos
+function Header() {
+  return <header>Encabezado</header>;
+}
+
+function MainContent() {
+  return (
+    <main>
+      <Sidebar />
+      <Content />
+    </main>
+  );
+}
+
+function Footer() {
+  return <footer>Pie de página</footer>;
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="estado" class="section">
+            <h2 class="typing-effect">Estado</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>useState Hook</h2>
+                <pre><code>import { useState } from 'react';
+
+function Contador() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Has clickeado {count} veces</p>
+      <button onClick={() => setCount(count + 1)}>
+        Incrementar
+      </button>
+    </div>
+  );
+}
+
+// Estado con objetos
+function Usuario() {
+  const [user, setUser] = useState({
+    nombre: '',
+    email: ''
+  });
+
+  const actualizarUsuario = (campo, valor) => {
+    setUser({
+      ...user,
+      [campo]: valor
+    });
+  };
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

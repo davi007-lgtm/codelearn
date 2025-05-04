@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Botón menú móvil -->
+    <button id="menu-toggle" class="menu-toggle">
+        <span class="menu-icon"></span>
+    </button>
+
+    <!-- Navegación lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <div class="nav-section">
+            <h3>Fundamentos JavaScript</h3>
+            <a href="#introduccion">Introducción</a>
+            <a href="#variables">Variables y Tipos</a>
+            <a href="#operadores">Operadores</a>
+            <a href="#control">Control de Flujo</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Funciones y Objetos</h3>
+            <a href="#funciones">Funciones</a>
+            <a href="#objetos">Objetos</a>
+            <a href="#arrays">Arrays</a>
+            <a href="#clases">Clases</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>JavaScript Moderno</h3>
+            <a href="#es6">ES6+ Features</a>
+            <a href="#async">Async/Await</a>
+            <a href="#modulos">Módulos</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>DOM y Eventos</h3>
+            <a href="#dom">Manipulación del DOM</a>
+            <a href="#eventos">Eventos</a>
+            <a href="#formularios">Formularios</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>APIs y Herramientas</h3>
+            <a href="#fetch">Fetch API</a>
+            <a href="#storage">Web Storage</a>
+            <a href="#debug">Debugging</a>
+        </div>
+    </nav>
+
+    <main class="concept-content">
+        <section id="introduccion" class="concept-section">
+            <h1 class="concept-title">JavaScript</h1>
+            
+            <div class="example-container">
+                <h2 class="example-title">¿Qué es JavaScript?</h2>
+                <p class="example-description">JavaScript es un lenguaje de programación interpretado, orientado a objetos, basado en prototipos y multiparadigma. Es uno de los tres pilares de la web moderna junto con HTML y CSS.</p>
+                <ul class="concept-list">
+                    <li>Dinámico y flexible</li>
+                    <li>Ejecución en el navegador</li>
+                    <li>Asíncrono y event-driven</li>
+                    <li>Gran ecosistema (npm)</li>
+                </ul>
+            </div>
+
+            <div class="example-container">
+                <h2 class="example-title">Configuración del Entorno</h2>
+                <div class="code-block" data-language="setup">
+                    <code>// Herramientas necesarias
+- Navegador web moderno
+- Editor de código (VS Code recomendado)
+- Node.js (opcional, para desarrollo)
+
+// Extensiones recomendadas VS Code
+- JavaScript (ES6) code snippets
+- ESLint
+- Prettier
+- Live Server</code>
+                </div>
+            </div>
+        </section>
+
+        <section id="variables" class="concept-section">
+            <h2 class="concept-subtitle">Variables y Tipos</h2>
+            
+            <div class="example-container">
+                <h2 class="example-title">Declaración de Variables</h2>
+                <p class="example-description">En JavaScript moderno, usamos <code>let</code> y <code>const</code> para declarar variables con scope de bloque.</p>
+                <div class="code-block" data-language="javascript">
+                    <code>// Variables modernas
+let nombre = "JavaScript";
+const VERSION = "ES2022";
+
+// Scope de bloque
+{
+    let x = 10;
+    const y = 20;
+}
+
+// Tipos de datos
+let string = "texto";
+let number = 42;
+let boolean = true;
+let array = [1, 2, 3];
+let object = { key: "value" };
+let nulo = null;
+let indefinido = undefined;
+
+// Symbol y BigInt
+let symbol = Symbol("descripción");
+let bigInt = 9007199254740991n;</code>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p>💡 Usa <code>const</code> por defecto y <code>let</code> solo cuando necesites reasignar valores. Evita usar <code>var</code>.</p>
+            </div>
+
+            <div class="example-container">
+                <h2 class="example-title">Tipos y Conversiones</h2>
+                <div class="code-block" data-language="javascript">
+                    <code>// Verificación de tipos
+typeof "texto";     // "string"
+typeof 42;          // "number"
+typeof true;        // "boolean"
+typeof undefined;   // "undefined"
+typeof null;        // "object"
+typeof {};          // "object"
+typeof [];          // "object"
+
+// Conversiones
+String(42);         // "42"
+Number("42");       // 42
+Boolean(1);         // true
+Array.from("123");  // ["1", "2", "3"]
+Object.entries({x: 1}); // [["x", 1]]</code>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p>⚠️ Cuidado con las conversiones implícitas en comparaciones. Usa siempre === para comparaciones estrictas.</p>
+            </div>
+        </section>
+
+        <section id="operadores" class="concept-section">
+            <h2 class="concept-subtitle">Operadores</h2>
+            
+            <div class="example-container">
+                <h2 class="example-title">Operadores Básicos</h2>
+                <div class="code-block" data-language="javascript">
+                    <code>// Aritméticos
+let suma = 5 + 3;        // 8
+let resta = 10 - 4;      // 6
+let multiplicacion = 3 * 4; // 12
+let division = 15 / 3;   // 5
+let modulo = 17 % 5;     // 2
+
+// Comparación
+let igual = 5 === "5";   // false (estricto)
+let igualSuelto = 5 == "5"; // true (no estricto)
+let mayor = 10 > 5;      // true
+let menor = 3 < 7;       // true</code>
+                </div>
+            </div>
+
+            <div class="example-container">
+                <h2 class="example-title">Operadores Lógicos</h2>
+                <div class="code-block" data-language="javascript">
+                    <code>// AND, OR, NOT
+let and = true && false; // false
+let or = true || false;  // true
+let not = !true;         // false
+
+// Operador ternario
+let edad = 20;
+let mensaje = edad >= 18 ? "Adulto" : "Menor";
+
+// Operadores de asignación
+let x = 5;
+x += 3;  // x = x + 3
+x *= 2;  // x = x * 2</code>
+                </div>
+            </div>
+        </section>
+
+        <div class="concept-navigation">
+            <a href="../index.html" class="nav-button prev">Volver al Inicio</a>
+            <a href="#variables" class="nav-button next">Siguiente: Variables</a>
+        </div>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para el menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace (móvil)
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

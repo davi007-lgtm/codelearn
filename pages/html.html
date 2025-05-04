@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Botón menú móvil -->
+    <button id="menu-toggle" class="menu-toggle">
+        <span class="menu-icon"></span>
+    </button>
+
+    <!-- Navegación lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <div class="nav-section">
+            <h3>Fundamentos HTML</h3>
+            <a href="#introduccion">Introducción</a>
+            <a href="#estructura">Estructura Básica</a>
+            <a href="#elementos">Elementos HTML</a>
+            <a href="#atributos">Atributos</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Contenido</h3>
+            <a href="#texto">Texto y Tipografía</a>
+            <a href="#listas">Listas</a>
+            <a href="#enlaces">Enlaces</a>
+            <a href="#multimedia">Imágenes y Multimedia</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Formularios y Tablas</h3>
+            <a href="#formularios">Formularios</a>
+            <a href="#tablas">Tablas</a>
+            <a href="#inputs">Tipos de Input</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Semántica y SEO</h3>
+            <a href="#semantica">HTML Semántico</a>
+            <a href="#accesibilidad">Accesibilidad</a>
+            <a href="#seo">SEO Básico</a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>HTML5 Moderno</h3>
+            <a href="#nuevos-elementos">Nuevos Elementos</a>
+            <a href="#apis">APIs HTML5</a>
+            <a href="#responsive">Diseño Responsive</a>
+        </div>
+    </nav>
+
+    <main class="concept-content">
+        <section id="introduccion" class="concept-section">
+            <h1 class="concept-title">HTML</h1>
+            
+            <div class="example-container">
+                <h2 class="example-title">¿Qué es HTML?</h2>
+                <p class="example-description">HTML (HyperText Markup Language) es el lenguaje estándar para crear y estructurar páginas web. Define la estructura y el contenido semántico de una página web.</p>
+                <ul class="concept-list">
+                    <li>Lenguaje de marcado estándar</li>
+                    <li>Base de toda página web</li>
+                    <li>Estructura semántica</li>
+                    <li>Compatible con todos los navegadores</li>
+                </ul>
+            </div>
+
+            <div class="example-container">
+                <h2 class="example-title">Estructura Básica</h2>
+                <div class="code-block" data-language="html">
+                    <code><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+</head>
+<body>
+    <h1>¡Hola Mundo!</h1>
+    <p>Este es un párrafo de ejemplo.</p>
+</body>
+</html></code>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p>💡 Siempre incluye el doctype y los metadatos básicos en el head de tu documento HTML.</p>
+            </div>
+        </section>
+
+        <section id="elementos" class="concept-section">
+            <h2 class="concept-subtitle">Elementos HTML</h2>
+            
+            <div class="example-container">
+                <h2 class="example-title">Elementos de Texto</h2>
+                <div class="code-block" data-language="html">
+                    <code><!-- Encabezados -->
+<h1>Título Principal</h1>
+<h2>Subtítulo</h2>
+<h3>Encabezado nivel 3</h3>
+
+<!-- Párrafos y texto -->
+<p>Este es un párrafo con <strong>texto importante</strong>
+y <em>texto enfatizado</em>.</p>
+
+<!-- Saltos y separadores -->
+<br>
+<hr>
+
+<!-- Texto preformateado -->
+<pre>
+    Este texto mantiene
+    los espacios y saltos
+    de línea.
+</pre></code>
+                </div>
+            </div>
+
+            <div class="example-container">
+                <h2 class="example-title">Elementos de Agrupación</h2>
+                <div class="code-block" data-language="html">
+                    <code><!-- Divisiones -->
+<div class="contenedor">
+    <section>
+        <h2>Sección de Contenido</h2>
+        <article>
+            <h3>Artículo</h3>
+            <p>Contenido del artículo.</p>
+        </article>
+    </section>
+    <aside>
+        <h3>Barra Lateral</h3>
+        <p>Contenido relacionado.</p>
+    </aside>
+</div>
+
+<!-- Listas -->
+<ul>
+    <li>Elemento 1</li>
+    <li>Elemento 2</li>
+</ul>
+
+<ol>
+    <li>Primer paso</li>
+    <li>Segundo paso</li>
+</ol></code>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p>⚠️ Usa elementos semánticos en lugar de divs genéricos cuando sea posible para mejorar la accesibilidad y el SEO.</p>
+            </div>
+        </section>
+
+        <section id="atributos" class="concept-section">
+            <h2 class="concept-subtitle">Atributos HTML</h2>
+            
+            <div class="example-container">
+                <h2 class="example-title">Atributos Comunes</h2>
+                <div class="code-block" data-language="html">
+                    <code><!-- Atributos globales -->
+<div id="unico" class="contenedor principal" 
+     data-info="personalizado">
+    Contenido
+</div>
+
+<!-- Atributos específicos -->
+<img src="imagen.jpg" alt="Descripción" width="300" height="200">
+<a href="https://ejemplo.com" target="_blank" rel="noopener">
+    Enlace externo
+</a>
+
+<!-- Atributos booleanos -->
+<input type="text" disabled>
+<video controls autoplay muted>
+    <source src="video.mp4" type="video/mp4">
+</video></code>
+                </div>
+            </div>
+        </section>
+
+        <div class="concept-navigation">
+            <a href="../index.html" class="nav-button prev">Volver al Inicio</a>
+            <a href="#elementos" class="nav-button next">Siguiente: Elementos HTML</a>
+        </div>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para el menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace (móvil)
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

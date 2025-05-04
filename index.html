@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Plataforma de Aprendizaje</title>
+    <link rel="stylesheet" href="learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Botón menú móvil -->
+    <button id="menu-toggle" class="menu-toggle">
+        <span class="menu-icon"></span>
+    </button>
+
+    <!-- Barra de navegación lateral -->
+    <nav class="sidebar">
+        <div class="nav-section">
+            <h3>Frontend</h3>
+            <a href="#frontend">HTML</a>
+            <a href="#frontend">JavaScript</a>
+            <a href="#frontend">React</a>
+            <a href="#frontend">Vue</a>
+            <a href="#frontend">Angular</a>
+        </div>
+        <div class="nav-section">
+            <h3>Backend</h3>
+            <a href="#backend">Node.js</a>
+            <a href="#backend">Python</a>
+            <a href="#backend">Java</a>
+        </div>
+        <div class="nav-section">
+            <h3>Móvil</h3>
+            <a href="#mobile">React Native</a>
+            <a href="#mobile">Flutter</a>
+        </div>
+        <div class="nav-section">
+            <h3>Bases de Datos</h3>
+            <a href="#databases">SQL</a>
+            <a href="#databases">MongoDB</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <h1>Bienvenido a CodeLearn</h1>
+        <p class="intro-text">Explora los conceptos fundamentales de diferentes tecnologías de desarrollo.</p>
+
+        <!-- Frontend -->
+        <section id="frontend">
+            <h2 class="section-title">Desarrollo Frontend</h2>
+            <div class="language-grid">
+                <div class="concept-card glass-card language-card">
+                    <h2>HTML</h2>
+                    <p>Fundamentos del lenguaje de marcado para la web.</p>
+                    <ul class="features-list">
+                        <li>Estructura y semántica</li>
+                        <li>Elementos y atributos</li>
+                        <li>Formularios y multimedia</li>
+                        <li>Accesibilidad y SEO</li>
+                    </ul>
+                    <a href="pages/html.html" class="explore-button">Explorar HTML</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>JavaScript</h2>
+                    <p>El lenguaje de programación de la web moderna.</p>
+                    <ul class="features-list">
+                        <li>Fundamentos y ES6+</li>
+                        <li>Asincronía y promesas</li>
+                        <li>DOM y eventos</li>
+                        <li>APIs modernas</li>
+                    </ul>
+                    <a href="pages/javascript.html" class="explore-button">Explorar JavaScript</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>React</h2>
+                    <p>Biblioteca para interfaces de usuario.</p>
+                    <ul class="features-list">
+                        <li>Componentes y Props</li>
+                        <li>Estado y Hooks</li>
+                        <li>Context y Redux</li>
+                        <li>Optimización</li>
+                    </ul>
+                    <a href="pages/react.html" class="explore-button">Explorar React</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>Vue</h2>
+                    <p>Framework progresivo para UI.</p>
+                    <ul class="features-list">
+                        <li>Reactividad</li>
+                        <li>Composition API</li>
+                        <li>Vuex</li>
+                        <li>Vue Router</li>
+                    </ul>
+                    <a href="pages/vue.html" class="explore-button">Explorar Vue</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>Angular</h2>
+                    <p>Framework completo de Google.</p>
+                    <ul class="features-list">
+                        <li>TypeScript</li>
+                        <li>RxJS</li>
+                        <li>Servicios e Inyección</li>
+                        <li>Módulos y Routing</li>
+                    </ul>
+                    <a href="pages/angular.html" class="explore-button">Explorar Angular</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backend -->
+        <section id="backend">
+            <h2 class="section-title">Desarrollo Backend</h2>
+            <div class="language-grid">
+                <div class="concept-card glass-card language-card">
+                    <h2>Node.js</h2>
+                    <p>Runtime de JavaScript para el servidor.</p>
+                    <ul class="features-list">
+                        <li>Event Loop</li>
+                        <li>Express.js</li>
+                        <li>APIs RESTful</li>
+                        <li>Middleware</li>
+                    </ul>
+                    <a href="pages/nodejs.html" class="explore-button">Explorar Node.js</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>Python</h2>
+                    <p>Lenguaje versátil y legible.</p>
+                    <ul class="features-list">
+                        <li>Django y Flask</li>
+                        <li>ORM y Modelos</li>
+                        <li>FastAPI</li>
+                        <li>Data Science</li>
+                    </ul>
+                    <a href="pages/python.html" class="explore-button">Explorar Python</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>Java</h2>
+                    <p>Lenguaje versátil para desarrollo empresarial.</p>
+                    <ul class="features-list">
+                        <li>POO y patrones</li>
+                        <li>Collections y Streams</li>
+                        <li>Concurrencia</li>
+                        <li>Spring Framework</li>
+                    </ul>
+                    <a href="pages/java.html" class="explore-button">Explorar Java</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile -->
+        <section id="mobile">
+            <h2 class="section-title">Desarrollo Móvil</h2>
+            <div class="language-grid">
+                <div class="concept-card glass-card language-card">
+                    <h2>React Native</h2>
+                    <p>Desarrollo de aplicaciones móviles multiplataforma.</p>
+                    <ul class="features-list">
+                        <li>Componentes nativos</li>
+                        <li>Navegación y estado</li>
+                        <li>APIs nativas</li>
+                        <li>Rendimiento</li>
+                    </ul>
+                    <a href="pages/react-native.html" class="explore-button">Explorar React Native</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>Flutter</h2>
+                    <p>Framework de Google para apps multiplataforma.</p>
+                    <ul class="features-list">
+                        <li>Widgets y Material</li>
+                        <li>Gestión de estado</li>
+                        <li>Animaciones</li>
+                        <li>Integración nativa</li>
+                    </ul>
+                    <a href="pages/flutter.html" class="explore-button">Explorar Flutter</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Databases -->
+        <section id="databases">
+            <h2 class="section-title">Bases de Datos</h2>
+            <div class="language-grid">
+                <div class="concept-card glass-card language-card">
+                    <h2>SQL</h2>
+                    <p>Lenguaje estándar para bases de datos relacionales.</p>
+                    <ul class="features-list">
+                        <li>CRUD Operations</li>
+                        <li>Joins y Relaciones</li>
+                        <li>Normalización</li>
+                        <li>Optimización</li>
+                    </ul>
+                    <a href="pages/sql.html" class="explore-button">Explorar SQL</a>
+                </div>
+
+                <div class="concept-card glass-card language-card">
+                    <h2>MongoDB</h2>
+                    <p>Base de datos NoSQL orientada a documentos.</p>
+                    <ul class="features-list">
+                        <li>CRUD Operations</li>
+                        <li>Agregaciones</li>
+                        <li>Índices</li>
+                        <li>Modelado</li>
+                    </ul>
+                    <a href="pages/mongodb.html" class="explore-button">Explorar MongoDB</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Script para el menú móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace (móvil)
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

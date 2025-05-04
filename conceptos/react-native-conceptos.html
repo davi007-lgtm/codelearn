@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos React Native - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos</li>
+            <li><a href="#introduccion">¿Qué es React Native?</a></li>
+            <li><a href="#ventajas">Ventajas y Limitaciones</a></li>
+            <li><a href="#arquitectura">Arquitectura</a></li>
+            <li><a href="#bridge">Bridge Nativo</a></li>
+            
+            <li class="nav-category">Componentes</li>
+            <li><a href="#core">Componentes Core</a></li>
+            <li><a href="#props">Props y State</a></li>
+            <li><a href="#lifecycle">Ciclo de Vida</a></li>
+            <li><a href="#hooks">Hooks Principales</a></li>
+            
+            <li class="nav-category">UI y Estilos</li>
+            <li><a href="#flexbox">Layout con Flexbox</a></li>
+            <li><a href="#styling">Sistema de Estilos</a></li>
+            <li><a href="#responsive">Diseño Responsive</a></li>
+            <li><a href="#platform">Específico de Plataforma</a></li>
+            
+            <li class="nav-category">Funcionalidades</li>
+            <li><a href="#navegacion">Navegación</a></li>
+            <li><a href="#gestos">Gestos</a></li>
+            <li><a href="#animaciones">Animaciones</a></li>
+            <li><a href="#rendimiento">Optimización</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h1>Conceptos Clave de React Native</h1>
+
+        <section id="introduccion" class="section">
+            <div class="concept-card glass-card">
+                <h2>¿Qué es React Native?</h2>
+                <p>React Native es un framework desarrollado por Facebook que permite crear aplicaciones móviles nativas utilizando JavaScript y React.</p>
+
+                <h3>Características Principales:</h3>
+                <ul class="features-list">
+                    <li>Desarrollo multiplataforma (iOS y Android)</li>
+                    <li>Renderizado nativo real (no WebView)</li>
+                    <li>Hot Reloading para desarrollo rápido</li>
+                    <li>Gran ecosistema de paquetes npm</li>
+                    <li>Comunidad activa y amplio soporte</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="arquitectura" class="section">
+            <div class="concept-card glass-card">
+                <h2>Arquitectura</h2>
+                <p>React Native utiliza una arquitectura única que permite la comunicación entre JavaScript y código nativo.</p>
+
+                <h3>Componentes Principales:</h3>
+                <ul class="features-list">
+                    <li><strong>JavaScript Thread:</strong> Donde se ejecuta el código JS</li>
+                    <li><strong>Native Thread:</strong> Para operaciones de UI y nativas</li>
+                    <li><strong>Bridge:</strong> Facilita la comunicación entre threads</li>
+                    <li><strong>Shadow Thread:</strong> Maneja el layout</li>
+                </ul>
+
+                <h3>Flujo de Datos:</h3>
+                <ul class="features-list">
+                    <li>JavaScript genera instrucciones de UI</li>
+                    <li>El Bridge serializa la comunicación</li>
+                    <li>Los módulos nativos ejecutan las operaciones</li>
+                    <li>Los resultados vuelven a JavaScript</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="core" class="section">
+            <div class="concept-card glass-card">
+                <h2>Componentes Core</h2>
+                <p>React Native proporciona componentes básicos que se mapean a elementos nativos de cada plataforma.</p>
+
+                <h3>Componentes Fundamentales:</h3>
+                <ul class="features-list">
+                    <li><strong>View:</strong> Contenedor básico (como div)</li>
+                    <li><strong>Text:</strong> Para mostrar texto</li>
+                    <li><strong>Image:</strong> Para imágenes locales y remotas</li>
+                    <li><strong>ScrollView:</strong> Para contenido scrollable</li>
+                    <li><strong>TextInput:</strong> Para entrada de texto</li>
+                    <li><strong>TouchableOpacity:</strong> Para interacciones táctiles</li>
+                </ul>
+
+                <h3>Características:</h3>
+                <ul class="features-list">
+                    <li>Renderizan a elementos nativos reales</li>
+                    <li>Comportamiento específico por plataforma</li>
+                    <li>Optimizados para móviles</li>
+                    <li>Soporte para accesibilidad</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="navegacion" class="section">
+            <div class="concept-card glass-card">
+                <h2>Navegación</h2>
+                <p>La navegación en React Native se maneja principalmente a través de React Navigation.</p>
+
+                <h3>Tipos de Navegación:</h3>
+                <ul class="features-list">
+                    <li><strong>Stack Navigation:</strong> Para navegación lineal</li>
+                    <li><strong>Tab Navigation:</strong> Para pestañas inferiores o superiores</li>
+                    <li><strong>Drawer Navigation:</strong> Para menús laterales</li>
+                    <li><strong>Bottom Sheet:</strong> Para paneles deslizantes</li>
+                </ul>
+
+                <h3>Características:</h3>
+                <ul class="features-list">
+                    <li>Gestión del historial de navegación</li>
+                    <li>Animaciones nativas fluidas</li>
+                    <li>Navegación por gestos</li>
+                    <li>Deep linking</li>
+                    <li>Parámetros entre pantallas</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="rendimiento" class="section">
+            <div class="concept-card glass-card">
+                <h2>Optimización de Rendimiento</h2>
+                <p>El rendimiento es crucial en aplicaciones móviles. React Native ofrece varias estrategias de optimización.</p>
+
+                <h3>Áreas Clave:</h3>
+                <ul class="features-list">
+                    <li><strong>Renderizado:</strong> Minimizar re-renders innecesarios</li>
+                    <li><strong>Memoria:</strong> Gestión eficiente de recursos</li>
+                    <li><strong>Animaciones:</strong> Uso del driver nativo</li>
+                    <li><strong>Listas:</strong> Virtualización y reciclaje de vistas</li>
+                </ul>
+
+                <h3>Mejores Prácticas:</h3>
+                <ul class="features-list">
+                    <li>Usar FlatList para listas largas</li>
+                    <li>Implementar lazy loading</li>
+                    <li>Memoización de componentes</li>
+                    <li>Optimizar imágenes</li>
+                    <li>Evitar bloqueos del thread principal</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

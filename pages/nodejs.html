@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos Node.js</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#modulos">Sistema de Módulos</a></li>
+            <li><a href="#npm">NPM</a></li>
+            
+            <li class="nav-category">Core Modules</li>
+            <li><a href="#fs">File System</a></li>
+            <li><a href="#http">HTTP</a></li>
+            <li><a href="#path">Path</a></li>
+            <li><a href="#events">Events</a></li>
+            
+            <li class="nav-category">Express.js</li>
+            <li><a href="#express">Fundamentos Express</a></li>
+            <li><a href="#middleware">Middleware</a></li>
+            <li><a href="#routing">Routing</a></li>
+            <li><a href="#templates">Template Engines</a></li>
+            
+            <li class="nav-category">Bases de Datos</li>
+            <li><a href="#mongodb">MongoDB</a></li>
+            <li><a href="#mongoose">Mongoose</a></li>
+            <li><a href="#sql">SQL con Node.js</a></li>
+            
+            <li class="nav-category">Avanzado</li>
+            <li><a href="#async">Async/Await</a></li>
+            <li><a href="#websockets">WebSockets</a></li>
+            <li><a href="#testing">Testing</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">Node.js</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es Node.js?</h2>
+                <p>Node.js es un entorno de ejecución de JavaScript del lado del servidor construido sobre el motor V8 de Chrome. Permite ejecutar JavaScript fuera del navegador y crear aplicaciones de red rápidas y escalables.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Arquitectura orientada a eventos</li>
+                        <li>Sistema de módulos nativo</li>
+                        <li>Gestor de paquetes NPM</li>
+                        <li>Ideal para aplicaciones en tiempo real</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración Inicial</h2>
+                <pre><code># Instalar Node.js
+// Descargar de nodejs.org o usar nvm
+
+# Verificar instalación
+node --version
+npm --version
+
+# Crear nuevo proyecto
+mkdir mi-proyecto-node
+cd mi-proyecto-node
+npm init -y
+
+# Estructura básica
+mi-proyecto/
+  ├── src/
+  │   └── index.js
+  ├── package.json
+  └── node_modules/</code></pre>
+            </div>
+        </section>
+
+        <section id="modulos" class="section">
+            <h2 class="typing-effect">Sistema de Módulos</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>CommonJS Modules</h2>
+                <pre><code>// matematicas.js
+module.exports = {
+  sumar: (a, b) => a + b,
+  restar: (a, b) => a - b,
+  multiplicar: (a, b) => a * b,
+  dividir: (a, b) => a / b
+};
+
+// index.js
+const matematicas = require('./matematicas');
+console.log(matematicas.sumar(5, 3)); // 8</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>ES Modules</h2>
+                <pre><code>// config.js
+export const PORT = 3000;
+export const DB_URL = 'mongodb://localhost:27017';
+
+// app.js
+import { PORT, DB_URL } from './config.js';
+import express from 'express';
+
+const app = express();
+app.listen(PORT, () => {
+  console.log(`Servidor en puerto ${PORT}`);
+});</code></pre>
+            </div>
+        </section>
+
+        <section id="express" class="section">
+            <h2 class="typing-effect">Express.js</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Servidor Básico</h2>
+                <pre><code>const express = require('express');
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.static('public'));
+
+// Rutas
+app.get('/', (req, res) => {
+  res.send('¡Hola Mundo!');
+});
+
+app.post('/api/usuarios', (req, res) => {
+  const { nombre } = req.body;
+  res.json({ mensaje: `Usuario ${nombre} creado` });
+});
+
+// Iniciar servidor
+app.listen(3000, () => {
+  console.log('Servidor en puerto 3000');
+});</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Middleware y Routing</h2>
+                <pre><code>// Middleware de autenticación
+const auth = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({
+      error: 'No autorizado'
+    });
+  }
+  next();
+};
+
+// Router
+const router = express.Router();
+
+router.get('/productos', auth, async (req, res) => {
+  try {
+    const productos = await Producto.find();
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos HTML - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Conceptos Fundamentales</li>
+            <li><a href="#estructura">Estructura Básica</a></li>
+            <li><a href="#elementos">Elementos HTML</a></li>
+            <li><a href="#atributos">Atributos</a></li>
+            <li><a href="#semantica">HTML Semántico</a></li>
+            
+            <li class="nav-category">Conceptos Intermedios</li>
+            <li><a href="#formularios">Formularios</a></li>
+            <li><a href="#multimedia">Elementos Multimedia</a></li>
+            <li><a href="#tablas">Tablas</a></li>
+            <li><a href="#listas">Listas</a></li>
+            
+            <li class="nav-category">Conceptos Avanzados</li>
+            <li><a href="#accesibilidad">Accesibilidad</a></li>
+            <li><a href="#meta">Meta Tags</a></li>
+            <li><a href="#responsive">Diseño Responsive</a></li>
+            <li><a href="#seo">SEO Básico</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h1>Conceptos Clave de HTML</h1>
+
+        <section id="estructura" class="section">
+            <div class="concept-card glass-card">
+                <h2>Estructura Básica</h2>
+                <p>La estructura básica de un documento HTML5 consiste en:</p>
+                <ul class="features-list">
+                    <li>DOCTYPE: Declara el tipo de documento HTML</li>
+                    <li>html: Elemento raíz del documento</li>
+                    <li>head: Contiene metadatos y enlaces a recursos</li>
+                    <li>body: Contiene el contenido visible</li>
+                </ul>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Título de la página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Contenido aquí --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+        </section>
+
+        <section id="elementos" class="section">
+            <div class="concept-card glass-card">
+                <h2>Elementos HTML</h2>
+                <p>Los elementos HTML son los bloques de construcción básicos:</p>
+                <ul class="features-list">
+                    <li>Elementos de bloque (div, p, h1-h6)</li>
+                    <li>Elementos en línea (span, a, strong)</li>
+                    <li>Elementos vacíos (img, br, hr)</li>
+                    <li>Elementos semánticos (article, section, nav)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="semantica" class="section">
+            <div class="concept-card glass-card">
+                <h2>HTML Semántico</h2>
+                <p>El HTML semántico da significado estructural al contenido:</p>
+                <pre><code>&lt;header&gt;
+    &lt;nav&gt;
+        &lt;!-- Navegación principal --&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;section&gt;
+            &lt;h1&gt;Título del artículo&lt;/h1&gt;
+            &lt;p&gt;Contenido...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;
+        &lt;!-- Contenido relacionado --&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;!-- Pie de página --&gt;
+&lt;/footer&gt;</code></pre>
+            </div>
+        </section>
+
+        <section id="accesibilidad" class="section">
+            <div class="concept-card glass-card">
+                <h2>Accesibilidad</h2>
+                <p>Prácticas clave para hacer el contenido accesible:</p>
+                <ul class="features-list">
+                    <li>Uso de atributos ARIA</li>
+                    <li>Textos alternativos para imágenes</li>
+                    <li>Estructura jerárquica de encabezados</li>
+                    <li>Contraste de colores adecuado</li>
+                </ul>
+                <pre><code>&lt;img src="imagen.jpg" 
+     alt="Descripción de la imagen" 
+     aria-label="Descripción detallada"&gt;
+
+&lt;button aria-label="Cerrar" 
+        role="button" 
+        aria-pressed="false"&gt;
+    ×
+&lt;/button&gt;</code></pre>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos JavaScript - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Conceptos Básicos</li>
+            <li><a href="#variables">Variables y Tipos</a></li>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#objetos">Objetos y Arrays</a></li>
+            <li><a href="#scope">Scope y Closures</a></li>
+            
+            <li class="nav-category">ES6+ Features</li>
+            <li><a href="#arrow">Arrow Functions</a></li>
+            <li><a href="#destructuring">Destructuring</a></li>
+            <li><a href="#modules">Módulos</a></li>
+            <li><a href="#promises">Promises</a></li>
+            
+            <li class="nav-category">Conceptos Avanzados</li>
+            <li><a href="#async">Async/Await</a></li>
+            <li><a href="#prototypes">Prototypes</a></li>
+            <li><a href="#this">This y Binding</a></li>
+            <li><a href="#eventos">Event Loop</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h1>Conceptos Clave de JavaScript</h1>
+
+        <section id="variables" class="section">
+            <div class="concept-card glass-card">
+                <h2>Variables y Tipos de Datos</h2>
+                <p>JavaScript es un lenguaje de tipado dinámico, lo que significa que las variables pueden cambiar de tipo durante la ejecución del programa.</p>
+                
+                <h3>Tipos Primitivos:</h3>
+                <ul class="features-list">
+                    <li><strong>String:</strong> Para texto y caracteres</li>
+                    <li><strong>Number:</strong> Para números enteros y decimales</li>
+                    <li><strong>Boolean:</strong> Para valores verdadero/falso</li>
+                    <li><strong>Undefined:</strong> Para variables declaradas sin valor</li>
+                    <li><strong>Null:</strong> Para representar la ausencia intencional de valor</li>
+                    <li><strong>Symbol:</strong> Para crear identificadores únicos</li>
+                    <li><strong>BigInt:</strong> Para números enteros muy grandes</li>
+                </ul>
+
+                <h3>Variables Modernas:</h3>
+                <ul class="features-list">
+                    <li><strong>let:</strong> Para variables que pueden cambiar</li>
+                    <li><strong>const:</strong> Para valores que no deben cambiar</li>
+                    <li><strong>var:</strong> Forma antigua, evitar su uso</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="funciones" class="section">
+            <div class="concept-card glass-card">
+                <h2>Funciones</h2>
+                <p>Las funciones en JavaScript son objetos de primera clase, lo que significa que pueden ser:</p>
+                
+                <ul class="features-list">
+                    <li>Asignadas a variables</li>
+                    <li>Pasadas como argumentos</li>
+                    <li>Retornadas por otras funciones</li>
+                    <li>Almacenadas en objetos</li>
+                </ul>
+
+                <h3>Tipos de Funciones:</h3>
+                <ul class="features-list">
+                    <li><strong>Funciones Declarativas:</strong> Definidas con la palabra clave function</li>
+                    <li><strong>Funciones Expresivas:</strong> Asignadas a variables</li>
+                    <li><strong>Arrow Functions:</strong> Sintaxis moderna y más concisa</li>
+                    <li><strong>Funciones Constructoras:</strong> Para crear objetos</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="async" class="section">
+            <div class="concept-card glass-card">
+                <h2>Asincronía en JavaScript</h2>
+                <p>JavaScript maneja la asincronía de varias formas para realizar operaciones que toman tiempo sin bloquear la ejecución:</p>
+
+                <h3>Callbacks:</h3>
+                <ul class="features-list">
+                    <li>Funciones que se ejecutan cuando otra operación termina</li>
+                    <li>Forma tradicional de manejar asincronía</li>
+                    <li>Puede llevar a "callback hell"</li>
+                </ul>
+
+                <h3>Promises:</h3>
+                <ul class="features-list">
+                    <li>Representan un valor futuro</li>
+                    <li>Estados: pending, fulfilled, rejected</li>
+                    <li>Permiten encadenar operaciones</li>
+                    <li>Mejor manejo de errores</li>
+                </ul>
+
+                <h3>Async/Await:</h3>
+                <ul class="features-list">
+                    <li>Sintaxis más limpia para promesas</li>
+                    <li>Hace que el código asíncrono parezca síncrono</li>
+                    <li>Mejor manejo de errores con try/catch</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="eventos" class="section">
+            <div class="concept-card glass-card">
+                <h2>Event Loop y Concurrencia</h2>
+                <p>El Event Loop es el mecanismo que permite a JavaScript manejar operaciones concurrentes con un solo hilo de ejecución.</p>
+
+                <h3>Componentes Principales:</h3>
+                <ul class="features-list">
+                    <li><strong>Call Stack:</strong> Pila de ejecución de código síncrono</li>
+                    <li><strong>Callback Queue:</strong> Cola para callbacks de eventos y timers</li>
+                    <li><strong>Microtask Queue:</strong> Cola prioritaria para promesas</li>
+                    <li><strong>Event Loop:</strong> Coordina la ejecución entre las colas</li>
+                </ul>
+
+                <h3>Orden de Ejecución:</h3>
+                <ul class="features-list">
+                    <li>1. Código síncrono en el Call Stack</li>
+                    <li>2. Microtasks (Promesas)</li>
+                    <li>3. Macrotasks (setTimeout, setInterval, eventos)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="scope" class="section">
+            <div class="concept-card glass-card">
+                <h2>Scope y Closures</h2>
+                <p>El scope determina la accesibilidad de variables y funciones en diferentes partes del código.</p>
+
+                <h3>Tipos de Scope:</h3>
+                <ul class="features-list">
+                    <li><strong>Global Scope:</strong> Variables accesibles en todo el programa</li>
+                    <li><strong>Function Scope:</strong> Variables solo accesibles dentro de la función</li>
+                    <li><strong>Block Scope:</strong> Variables let/const solo accesibles en el bloque</li>
+                    <li><strong>Module Scope:</strong> Variables accesibles solo en el módulo</li>
+                </ul>
+
+                <h3>Closures:</h3>
+                <ul class="features-list">
+                    <li>Funciones que recuerdan su scope de creación</li>
+                    <li>Permiten encapsulación de datos</li>
+                    <li>Útiles para crear datos privados</li>
+                    <li>Base para patrones de diseño avanzados</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

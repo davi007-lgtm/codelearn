@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos Angular</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#typescript">TypeScript</a></li>
+            <li><a href="#arquitectura">Arquitectura</a></li>
+            
+            <li class="nav-category">Componentes</li>
+            <li><a href="#componentes">Componentes Básicos</a></li>
+            <li><a href="#templates">Templates</a></li>
+            <li><a href="#directivas">Directivas</a></li>
+            <li><a href="#pipes">Pipes</a></li>
+            
+            <li class="nav-category">Gestión de Datos</li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#di">Inyección de Dependencias</a></li>
+            <li><a href="#http">HTTP Client</a></li>
+            <li><a href="#rxjs">RxJS</a></li>
+            
+            <li class="nav-category">Enrutamiento</li>
+            <li><a href="#routing">Router</a></li>
+            <li><a href="#guards">Guards</a></li>
+            <li><a href="#lazy">Lazy Loading</a></li>
+            
+            <li class="nav-category">Estado y Forms</li>
+            <li><a href="#forms">Formularios</a></li>
+            <li><a href="#validacion">Validación</a></li>
+            <li><a href="#signals">Signals</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">Angular</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es Angular?</h2>
+                <p>Angular es un framework completo para construir aplicaciones web de una sola página (SPA). Desarrollado por Google, Angular proporciona un conjunto robusto de herramientas para crear aplicaciones empresariales escalables.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Framework completo y opinado</li>
+                        <li>Basado en TypeScript</li>
+                        <li>Arquitectura modular</li>
+                        <li>Herramientas de desarrollo integradas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración del Proyecto</h2>
+                <pre><code># Instalar Angular CLI
+npm install -g @angular/cli
+
+# Crear nuevo proyecto
+ng new mi-app-angular
+cd mi-app-angular
+
+# Iniciar servidor de desarrollo
+ng serve
+
+# Estructura del proyecto
+mi-app-angular/
+  ├── src/
+  │   ├── app/
+  │   ├── assets/
+  │   └── index.html
+  ├── angular.json
+  └── package.json</code></pre>
+            </div>
+        </section>
+
+        <section id="typescript" class="section">
+            <h2 class="typing-effect">TypeScript en Angular</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Tipos Básicos</h2>
+                <pre><code>// Tipos básicos
+let nombre: string = 'Angular';
+let version: number = 17;
+let esEstable: boolean = true;
+let tecnologias: string[] = ['TypeScript', 'RxJS'];
+
+// Interfaces
+interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+  roles?: string[];
+}
+
+// Clases
+class Producto {
+  constructor(
+    public id: number,
+    public nombre: string,
+    private precio: number
+  ) {}
+
+  getPrecioConIVA(): number {
+    return this.precio * 1.21;
+  }
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Decoradores</h2>
+                <pre><code>// Decorador de componente
+@Component({
+  selector: 'app-usuario',
+  template: `
+    <div class="usuario">
+      <h2>{{ usuario.nombre }}</h2>
+      <p>{{ usuario.email }}</p>
+    </div>
+  `,
+  styles: [`
+    .usuario {
+      padding: 1rem;
+      border: 1px solid #ccc;
+    }
+  `]
+})
+export class UsuarioComponent {
+  @Input() usuario!: Usuario;
+  @Output() seleccionar = new EventEmitter<Usuario>();
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="componentes" class="section">
+            <h2 class="typing-effect">Componentes</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Componente Básico</h2>
+                <pre><code>// usuario.component.ts
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-usuario',
+  templateUrl: './usuario.component.html',
+  styleUrls: ['./usuario.component.css']
+})
+export class UsuarioComponent implements OnInit {
+  usuario = {
+    nombre: 'Ana',
+    email: 'ana@email.com'
+  };
+
+  constructor() {}
+
+  ngOnInit(): void {
+    console.log('Componente iniciado');
+  }
+
+  saludar(): void {
+    alert(`¡Hola ${this.usuario.nombre}!`);
+  }
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Template y Binding</h2>
+                <pre><code><!-- usuario.component.html -->
+<div class="usuario-card">
+  <h2>{{ usuario.nombre }}</h2>
+  <p [class.activo]="usuario.activo">
+    {{ usuario.email }}
+  </p>
+  
+  <button 
+    (click)="saludar()"
+    [disabled]="!usuario.activo">
+    Saludar
+  </button>
+
+  <ng-container *ngIf="usuario.roles">
+    <ul>
+      <li *ngFor="let rol of usuario.roles">
+        {{ rol }}
+      </li>
+    </ul>
+  </ng-container>
+</div></code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

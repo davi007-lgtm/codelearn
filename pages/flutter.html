@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos Flutter</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#dart">Lenguaje Dart</a></li>
+            <li><a href="#widgets">Widgets</a></li>
+            
+            <li class="nav-category">Widgets Básicos</li>
+            <li><a href="#layout">Layout Widgets</a></li>
+            <li><a href="#material">Material Design</a></li>
+            <li><a href="#cupertino">Cupertino</a></li>
+            <li><a href="#custom">Custom Widgets</a></li>
+            
+            <li class="nav-category">Estado</li>
+            <li><a href="#stateful">StatefulWidget</a></li>
+            <li><a href="#provider">Provider</a></li>
+            <li><a href="#bloc">BLoC Pattern</a></li>
+            <li><a href="#riverpod">Riverpod</a></li>
+            
+            <li class="nav-category">Navegación</li>
+            <li><a href="#routes">Rutas</a></li>
+            <li><a href="#navigator">Navigator 2.0</a></li>
+            <li><a href="#deeplinks">Deep Links</a></li>
+            
+            <li class="nav-category">Plataforma</li>
+            <li><a href="#plugins">Plugins Nativos</a></li>
+            <li><a href="#firebase">Firebase</a></li>
+            <li><a href="#deploy">Deployment</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">Flutter</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es Flutter?</h2>
+                <p>Flutter es un framework de UI de código abierto creado por Google para desarrollar aplicaciones nativas multiplataforma a partir de un único código base.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Desarrollo multiplataforma</li>
+                        <li>Hot Reload</li>
+                        <li>Widgets personalizables</li>
+                        <li>Alto rendimiento</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Estructura del Proyecto</h2>
+                <pre><code>mi_app/
+  ├── android/         # Código nativo Android
+  ├── ios/            # Código nativo iOS
+  ├── lib/            # Código Dart/Flutter
+  │   ├── main.dart   # Punto de entrada
+  │   ├── screens/    # Pantallas
+  │   ├── widgets/    # Widgets personalizados
+  │   └── models/     # Modelos de datos
+  ├── test/           # Tests
+  └── pubspec.yaml    # Dependencias</code></pre>
+            </div>
+        </section>
+
+        <section id="widgets" class="section">
+            <h2 class="typing-effect">Widgets</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>StatelessWidget</h2>
+                <pre><code>class WelcomeCard extends StatelessWidget {
+  final String name;
+  
+  const WelcomeCard({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text(
+              'Bienvenido $name',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Continuar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>StatefulWidget</h2>
+                <pre><code>class Counter extends StatefulWidget {
+  const Counter({Key? key}) : super(key: key);
+
+  @override
+  _CounterState createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  int _count = 0;
+
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Contador: $_count'),
+        ElevatedButton(
+          onPressed: _increment,
+          child: const Text('Incrementar'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="estado" class="section">
+            <h2 class="typing-effect">Gestión de Estado</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Provider</h2>
+                <pre><code>// Modelo
+class CounterModel extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// Uso con Provider
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CounterModel(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+// Consumir el estado
+class CounterWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CounterModel>(
+      builder: (context, counter, child) {
+        return Text('${counter.count}');
+      },
+    );
+  }
+}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>BLoC Pattern</h2>
+                <pre><code>// Eventos
+abstract class CounterEvent {}
+class IncrementPressed extends CounterEvent {}
+
+// Estados
+class CounterState {
+  final int count;
+  CounterState(this.count);
+}
+
+// BLoC
+class CounterBloc extends Bloc<CounterEvent, CounterState> {
+  CounterBloc() : super(CounterState(0)) {
+    on<IncrementPressed>((event, emit) {
+      emit(CounterState(state.count + 1));
+    });
+  }
+}
+
+// Uso con BlocBuilder
+class CounterPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CounterBloc, CounterState>(
+      builder: (context, state) {
+        return Text('${state.count}');
+      },
+    );
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="navegacion" class="section">
+            <h2 class="typing-effect">Navegación</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Rutas Nombradas</h2>
+                <pre><code>// Definir rutas
+MaterialApp(
+  routes: {
+    '/': (context) => HomeScreen(),
+    '/details': (context) => DetailsScreen(),
+    '/settings': (context) => SettingsScreen(),
+  },
+);
+
+// Navegar
+Navigator.pushNamed(
+  context,
+  '/details',
+  arguments: {'id': 123},
+);
+
+// Recibir argumentos
+final args = ModalRoute.of(context)!
+    .settings.arguments as Map;</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Navigator 2.0</h2>
+                <pre><code>class MyRouter extends RouterDelegate<MyRoutePath> {
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      pages: [
+        MaterialPage(
+          key: ValueKey('home'),
+          child: HomeScreen(),
+        ),
+        if (showDetails)
+          MaterialPage(
+            key: ValueKey('details'),
+            child: DetailsScreen(),
+          ),
+      ],
+      onPopPage: (route, result) {
+        if (!route.didPop(result)) {
+          return false;
+        }
+        showDetails = false;
+        notifyListeners();
+        return true;
+      },
+    );
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="firebase" class="section">
+            <h2 class="typing-effect">Firebase</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Configuración</h2>
+                <pre><code>// pubspec.yaml
+dependencies:
+  firebase_core: ^1.10.0
+  firebase_auth: ^3.3.0
+  cloud_firestore: ^3.1.0
+
+// Inicialización
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+// Autenticación
+final auth = FirebaseAuth.instance;
+await auth.signInWithEmailAndPassword(
+  email: email,
+  password: password,
+);
+
+// Firestore
+final db = FirebaseFirestore.instance;
+await db.collection('users').add({
+  'name': 'John',
+  'age': 30,
+});</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Cloud Functions</h2>
+                <pre><code>// Llamar a Cloud Function
+final functions = FirebaseFunctions.instance;
+final result = await functions
+    .httpsCallable('myFunction')
+    .call({
+      'data': 'test',
+    });
+
+// Real-time updates
+db.collection('messages')
+    .snapshots()
+    .listen((snapshot) {
+      for (var doc in snapshot.docs) {
+        print(doc.data());
+      }
+    });</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

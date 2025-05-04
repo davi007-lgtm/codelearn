@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos Python</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#sintaxis">Sintaxis Básica</a></li>
+            <li><a href="#tipos">Tipos de Datos</a></li>
+            
+            <li class="nav-category">Estructuras de Datos</li>
+            <li><a href="#listas">Listas y Tuplas</a></li>
+            <li><a href="#diccionarios">Diccionarios</a></li>
+            <li><a href="#sets">Sets</a></li>
+            <li><a href="#comprehensions">Comprehensions</a></li>
+            
+            <li class="nav-category">Control de Flujo</li>
+            <li><a href="#condicionales">Condicionales</a></li>
+            <li><a href="#bucles">Bucles</a></li>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#excepciones">Excepciones</a></li>
+            
+            <li class="nav-category">POO</li>
+            <li><a href="#clases">Clases y Objetos</a></li>
+            <li><a href="#herencia">Herencia</a></li>
+            <li><a href="#decoradores">Decoradores</a></li>
+            
+            <li class="nav-category">Módulos y Paquetes</li>
+            <li><a href="#modulos">Módulos</a></li>
+            <li><a href="#paquetes">Paquetes</a></li>
+            <li><a href="#virtualenv">Entornos Virtuales</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">Python</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es Python?</h2>
+                <p>Python es un lenguaje de programación de alto nivel, interpretado y de propósito general. Se destaca por su sintaxis clara y legible, lo que lo hace ideal para principiantes y expertos por igual.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Sintaxis clara y legible</li>
+                        <li>Tipado dinámico</li>
+                        <li>Extensa biblioteca estándar</li>
+                        <li>Gran comunidad y ecosistema</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración del Entorno</h2>
+                <pre><code># Verificar instalación
+python --version
+pip --version
+
+# Crear entorno virtual
+python -m venv mi-entorno
+source mi-entorno/bin/activate  # Linux/Mac
+mi-entorno\Scripts\activate     # Windows
+
+# Estructura del proyecto
+mi-proyecto/
+  ├── src/
+  │   └── main.py
+  ├── tests/
+  ├── requirements.txt
+  └── README.md</code></pre>
+            </div>
+        </section>
+
+        <section id="tipos" class="section">
+            <h2 class="typing-effect">Tipos de Datos</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Tipos Básicos</h2>
+                <pre><code># Números
+entero = 42
+flotante = 3.14
+complejo = 1 + 2j
+
+# Texto
+texto = "Hola Python"
+multilinea = """
+Este es un texto
+de múltiples líneas
+"""
+
+# Booleanos
+verdadero = True
+falso = False
+
+# None
+nulo = None
+
+# Verificación de tipos
+print(type(entero))    # <class 'int'>
+print(type(texto))     # <class 'str'>
+print(isinstance(entero, int))  # True</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Operaciones con Tipos</h2>
+                <pre><code># Operaciones con strings
+nombre = "Python"
+version = "3.11"
+print(f"{nombre} {version}")  # Python 3.11
+
+# Slicing
+texto = "Python es genial"
+print(texto[0:6])      # Python
+print(texto[-6:])      # genial
+print(texto[::2])      # Pto s eil
+
+# Conversión de tipos
+numero_str = "42"
+numero_int = int(numero_str)
+numero_float = float(numero_str)
+texto_numero = str(42)
+
+# Operaciones matemáticas
+suma = 5 + 3           # 8
+division = 10 / 3      # 3.3333...
+division_entera = 10 // 3  # 3
+modulo = 10 % 3        # 1
+potencia = 2 ** 3      # 8</code></pre>
+            </div>
+        </section>
+
+        <section id="funciones" class="section">
+            <h2 class="typing-effect">Funciones</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Definición de Funciones</h2>
+                <pre><code>def saludar(nombre: str) -> str:
+    """
+    Saluda a una persona.
+    
+    Args:
+        nombre: El nombre de la persona
+        
+    Returns:
+        Un saludo personalizado
+    """
+    return f"¡Hola, {nombre}!"
+
+# Parámetros por defecto
+def crear_usuario(
+    nombre: str,
+    edad: int = 18,
+    activo: bool = True
+) -> dict:
+    return {
+        "nombre": nombre,
+        "edad": edad,
+        "activo": activo
+    }
+
+# Args y kwargs
+def logger(*args, **kwargs):
+    for arg in args:
+        print(f"Arg: {arg}")
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Funciones Lambda</h2>
+                <pre><code># Función lambda básica
+sumar = lambda a, b: a + b
+
+# Uso con map
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(map(lambda x: x**2, numeros))
+
+# Uso con filter
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+
+# Uso con sorted
+usuarios = [
+    {"nombre": "Ana", "edad": 25},
+    {"nombre": "Juan", "edad": 30}
+]
+ordenados = sorted(
+    usuarios,
+    key=lambda x: x["edad"]
+)</code></pre>
+            </div>
+        </section>
+
+        <section id="estructuras" class="section">
+            <h2 class="typing-effect">Estructuras de Datos</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Listas y Tuplas</h2>
+                <pre><code># Listas
+frutas = ['manzana', 'banana', 'naranja']
+frutas.append('pera')
+frutas.insert(0, 'uva')
+frutas.remove('banana')
+
+# Slicing de listas
+primeros = frutas[:2]
+ultimos = frutas[-2:]
+cada_dos = frutas[::2]
+
+# Tuplas (inmutables)
+coordenadas = (10, 20)
+x, y = coordenadas  # Desempaquetado
+punto = (1,)  # Tupla de un elemento</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Diccionarios</h2>
+                <pre><code># Crear diccionario
+usuario = {
+    'nombre': 'Juan',
+    'edad': 25,
+    'activo': True
+}
+
+# Acceder y modificar
+nombre = usuario.get('nombre', 'Anónimo')
+usuario['edad'] = 26
+
+# Métodos útiles
+claves = usuario.keys()
+valores = usuario.values()
+items = usuario.items()
+
+# Dict comprehension
+cuadrados = {x: x**2 for x in range(5)}</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Sets</h2>
+                <pre><code># Crear set
+colores = {'rojo', 'verde', 'azul'}
+numeros = set([1, 2, 3, 3])  # {1, 2, 3}
+
+# Operaciones de conjuntos
+union = colores | {'amarillo'}
+interseccion = colores & {'verde', 'amarillo'}
+diferencia = colores - {'rojo'}
+
+# Set comprehension
+pares = {x for x in range(10) if x % 2 == 0}</code></pre>
+            </div>
+        </section>
+
+        <section id="control-flujo" class="section">
+            <h2 class="typing-effect">Control de Flujo</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Condicionales</h2>
+                <pre><code># If-elif-else
+edad = 18
+if edad < 13:
+    print("Niño")
+elif edad < 20:
+    print("Adolescente")
+else:
+    print("Adulto")
+
+# Operador ternario
+estado = "activo" if edad >= 18 else "inactivo"
+
+# Match (Python 3.10+)
+match status:
+    case "ok":
+        print("Todo bien")
+    case "error":
+        print("Hubo un error")
+    case _:
+        print("Estado desconocido")</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Bucles</h2>
+                <pre><code># For loop
+for i in range(5):
+    print(i)
+
+# While loop
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+
+# Break y continue
+for num in range(10):
+    if num == 5:
+        break
+    if num % 2 == 0:
+        continue
+    print(num)
+
+# Comprensión de listas
+cuadrados = [x**2 for x in range(10)]
+pares = [x for x in range(10) if x % 2 == 0]</code></pre>
+            </div>
+        </section>
+
+        <section id="poo" class="section">
+            <h2 class="typing-effect">Programación Orientada a Objetos</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Clases y Objetos</h2>
+                <pre><code>class Persona:
+    def __init__(self, nombre: str, edad: int):
+        self.nombre = nombre
+        self.edad = edad
+    
+    def saludar(self) -> str:
+        return f"Hola, soy {self.nombre}"
+    
+    @property
+    def es_adulto(self) -> bool:
+        return self.edad >= 18
+
+# Crear instancia
+persona = Persona("Ana", 25)
+print(persona.saludar())
+print(persona.es_adulto)</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Herencia</h2>
+                <pre><code>class Empleado(Persona):
+    def __init__(self, nombre: str, edad: int, salario: float):
+        super().__init__(nombre, edad)
+        self.salario = salario
+    
+    def info_completa(self) -> str:
+        return f"{self.saludar()}, gano {self.salario}€"
+
+# Herencia múltiple
+class A:
+    def metodo(self):
+        return "A"
+
+class B:
+    def metodo(self):
+        return "B"
+
+class C(A, B):
+    pass</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Decoradores</h2>
+                <pre><code># Decorador básico
+def log_llamada(func):
+    def wrapper(*args, **kwargs):
+        print(f"Llamando a {func.__name__}")
+        resultado = func(*args, **kwargs)
+        print(f"Finalizó {func.__name__}")
+        return resultado
+    return wrapper
+
+@log_llamada
+def suma(a: int, b: int) -> int:
+    return a + b
+
+# Decorador con parámetros
+def repetir(veces):
+    def decorador(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(veces):
+                func(*args, **kwargs)
+        return wrapper
+    return decorador
+
+@repetir(3)
+def saludar(nombre):
+    print(f"¡Hola {nombre}!")</code></pre>
+            </div>
+        </section>
+
+        <section id="modulos" class="section">
+            <h2 class="typing-effect">Módulos y Paquetes</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Módulos</h2>
+                <pre><code># Importar módulo completo
+import math
+print(math.pi)
+
+# Importar elementos específicos
+from datetime import datetime, timedelta
+from typing import List, Optional
+
+# Alias
+import pandas as pd
+import numpy as np
+
+# Crear módulo propio
+# mi_modulo.py
+def mi_funcion():
+    return "Hola desde mi módulo"
+
+# Usar módulo propio
+from mi_modulo import mi_funcion</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Paquetes</h2>
+                <pre><code># Estructura de un paquete
+mi_paquete/
+    __init__.py
+    modulo1.py
+    modulo2.py
+    subpaquete/
+        __init__.py
+        modulo3.py
+
+# __init__.py
+from .modulo1 import *
+from .modulo2 import *
+
+# Importar desde paquete
+from mi_paquete import modulo1
+from mi_paquete.subpaquete import modulo3</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Entornos Virtuales</h2>
+                <pre><code># Crear entorno virtual
+python -m venv mi_entorno
+
+# Activar entorno
+# Windows
+mi_entorno\Scripts\activate
+# Linux/Mac
+source mi_entorno/bin/activate
+
+# Instalar paquetes
+pip install nombre_paquete
+pip install -r requirements.txt
+
+# Guardar dependencias
+pip freeze > requirements.txt</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

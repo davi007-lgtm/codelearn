@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos MongoDB</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#conceptos">Conceptos Básicos</a></li>
+            <li><a href="#shell">MongoDB Shell</a></li>
+            
+            <li class="nav-category">CRUD Operaciones</li>
+            <li><a href="#insert">Insertar Documentos</a></li>
+            <li><a href="#find">Consultar Documentos</a></li>
+            <li><a href="#update">Actualizar Documentos</a></li>
+            <li><a href="#delete">Eliminar Documentos</a></li>
+            
+            <li class="nav-category">Consultas Avanzadas</li>
+            <li><a href="#agregacion">Agregación</a></li>
+            <li><a href="#indices">Índices</a></li>
+            <li><a href="#geospatial">Geoespacial</a></li>
+            <li><a href="#text">Búsqueda de Texto</a></li>
+            
+            <li class="nav-category">Administración</li>
+            <li><a href="#replica">Replica Set</a></li>
+            <li><a href="#sharding">Sharding</a></li>
+            <li><a href="#backup">Backup y Restore</a></li>
+            
+            <li class="nav-category">Seguridad</li>
+            <li><a href="#auth">Autenticación</a></li>
+            <li><a href="#roles">Roles y Permisos</a></li>
+            <li><a href="#ssl">SSL/TLS</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">MongoDB</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es MongoDB?</h2>
+                <p>MongoDB es una base de datos NoSQL orientada a documentos que proporciona alta escalabilidad, flexibilidad y rendimiento. Almacena datos en documentos tipo JSON con esquemas dinámicos, lo que facilita la evolución de las aplicaciones.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Base de datos NoSQL</li>
+                        <li>Esquema flexible</li>
+                        <li>Alta escalabilidad</li>
+                        <li>Consultas potentes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración Inicial</h2>
+                <pre><code># Instalar MongoDB
+// Descargar de mongodb.com
+
+# Iniciar servidor
+mongod --dbpath /data/db
+
+# Conectar al shell
+mongosh
+
+# Estructura básica
+database/
+  ├── collection1/
+  │   ├── document1
+  │   └── document2
+  └── collection2/
+      └── document3
+
+# Crear base de datos
+use mi_base_datos</code></pre>
+            </div>
+        </section>
+
+        <section id="crud" class="section">
+            <h2 class="typing-effect">Operaciones CRUD</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Insertar y Consultar</h2>
+                <pre><code>// Insertar un documento
+db.usuarios.insertOne({
+  nombre: "Ana",
+  email: "ana@email.com",
+  edad: 28,
+  intereses: ["programación", "diseño"]
+});
+
+// Insertar múltiples documentos
+db.usuarios.insertMany([
+  {
+    nombre: "Juan",
+    email: "juan@email.com",
+    edad: 30
+  },
+  {
+    nombre: "María",
+    email: "maria@email.com",
+    edad: 25
+  }
+]);
+
+// Consultas básicas
+db.usuarios.find({
+  edad: { $gt: 25 }
+});
+
+// Proyección
+db.usuarios.find(
+  { edad: { $gt: 25 } },
+  { nombre: 1, email: 1, _id: 0 }
+);</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Actualizar y Eliminar</h2>
+                <pre><code>// Actualizar un documento
+db.usuarios.updateOne(
+  { email: "ana@email.com" },
+  {
+    $set: { edad: 29 },
+    $push: { 
+      intereses: "fotografía" 
+    }
+  }
+);
+
+// Actualizar múltiples documentos
+db.usuarios.updateMany(
+  { edad: { $lt: 30 } },
+  { $inc: { edad: 1 } }
+);
+
+// Eliminar documentos
+db.usuarios.deleteOne({
+  email: "juan@email.com"
+});
+
+db.usuarios.deleteMany({
+  edad: { $lt: 25 }
+});</code></pre>
+            </div>
+        </section>
+
+        <section id="agregacion" class="section">
+            <h2 class="typing-effect">Pipeline de Agregación</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Operaciones de Agregación</h2>
+                <pre><code>// Pipeline básico
+db.ventas.aggregate([
+  // Filtrar documentos
+  { 
+    $match: { 
+      fecha: { 
+        $gte: ISODate("2024-01-01") 
+      } 
+    }
+  },
+  // Agrupar y calcular
+  {
+    $group: {
+      _id: "$categoria",
+      total: { $sum: "$monto" },
+      promedio: { $avg: "$monto" },
+      count: { $sum: 1 }
+    }
+  },
+  // Ordenar resultados
+  {
+    $sort: { total: -1 }
+  }
+]);
+
+// Lookup (JOIN)
+db.pedidos.aggregate([
+  {
+    $lookup: {
+      from: "usuarios",
+      localField: "usuario_id",
+      foreignField: "_id",
+      as: "usuario_info"
+    }
+  },
+  {
+    $unwind: "$usuario_info"
+  }
+]);</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Índices y Optimización</h2>
+                <pre><code>// Crear índice
+db.usuarios.createIndex(
+  { email: 1 },
+  { unique: true }
+);
+
+// Índice compuesto
+db.productos.createIndex({
+  categoria: 1,
+  nombre: 1
+});
+
+// Índice de texto
+db.articulos.createIndex({
+  titulo: "text",
+  contenido: "text"
+});
+
+// Consultar plan de ejecución
+db.usuarios.find(
+  { edad: { $gt: 25 } }
+).explain("executionStats");</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

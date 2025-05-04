@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos Vue</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#sintaxis">Sintaxis Básica</a></li>
+            <li><a href="#reactividad">Sistema de Reactividad</a></li>
+            
+            <li class="nav-category">Componentes</li>
+            <li><a href="#componentes">Componentes Básicos</a></li>
+            <li><a href="#props">Props y Eventos</a></li>
+            <li><a href="#slots">Slots</a></li>
+            <li><a href="#lifecycle">Ciclo de Vida</a></li>
+            
+            <li class="nav-category">Composition API</li>
+            <li><a href="#setup">Setup y Referencias</a></li>
+            <li><a href="#computed">Computed y Watch</a></li>
+            <li><a href="#composables">Composables</a></li>
+            <li><a href="#provide">Provide/Inject</a></li>
+            
+            <li class="nav-category">Enrutamiento</li>
+            <li><a href="#router">Vue Router</a></li>
+            <li><a href="#guards">Navigation Guards</a></li>
+            <li><a href="#params">Params y Query</a></li>
+            
+            <li class="nav-category">Estado</li>
+            <li><a href="#pinia">Pinia</a></li>
+            <li><a href="#stores">Stores</a></li>
+            <li><a href="#persistencia">Persistencia</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">Vue.js</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es Vue.js?</h2>
+                <p>Vue.js es un framework progresivo para construir interfaces de usuario. A diferencia de otros frameworks monolíticos, Vue está diseñado desde cero para ser adoptado incrementalmente.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Framework progresivo y flexible</li>
+                        <li>Sistema de reactividad eficiente</li>
+                        <li>Virtual DOM optimizado</li>
+                        <li>Ecosistema rico y modular</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Configuración del Proyecto</h2>
+                <pre><code># Crear proyecto con Vue CLI
+npm init vue@latest
+
+# Estructura del proyecto
+mi-app-vue/
+  ├── src/
+  │   ├── assets/
+  │   ├── components/
+  │   ├── views/
+  │   ├── App.vue
+  │   └── main.js
+  ├── public/
+  └── package.json
+
+# Instalar dependencias
+npm install
+
+# Iniciar desarrollo
+npm run dev</code></pre>
+            </div>
+        </section>
+
+        <section id="componentes" class="section">
+            <h2 class="typing-effect">Componentes</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Componente Single-File</h2>
+                <pre><code><!-- Usuario.vue -->
+<template>
+  <div class="usuario-card">
+    <h2>{{ nombre }}</h2>
+    <p>{{ email }}</p>
+    <button @click="saludar">
+      Saludar
+    </button>
+    <slot name="acciones"></slot>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const props = defineProps({
+  nombre: String,
+  email: String
+})
+
+const emit = defineEmits(['saludo'])
+
+const saludar = () => {
+  emit('saludo', props.nombre)
+}
+</script>
+
+<style scoped>
+.usuario-card {
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--card-bg);
+}
+</style></code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Composition API</h2>
+                <pre><code>// useUsuario.js
+import { ref, computed } from 'vue'
+
+export function useUsuario() {
+  const usuario = ref({
+    nombre: 'María',
+    email: 'maria@email.com',
+    activo: true
+  })
+
+  const nombreCompleto = computed(() => {
+    return `${usuario.value.nombre} ${usuario.value.apellido}`
+  })
+
+  function actualizarUsuario(datos) {
+    usuario.value = { ...usuario.value, ...datos }
+  }
+
+  return {
+    usuario,
+    nombreCompleto,
+    actualizarUsuario
+  }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="router" class="section">
+            <h2 class="typing-effect">Vue Router</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Configuración Básica</h2>
+                <pre><code>// router/index.js
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import Perfil from '../views/Perfil.vue'
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/perfil/:id',
+      name: 'perfil',
+      component: Perfil,
+      props: true
+    }
+  ]
+})
+
+export default router</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Navegación y Guards</h2>
+                <pre><code>// Navigation Guards
+router.beforeEach((to, from) => {
+  const isAuthenticated = checkAuth()
+  
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    return { name: 'login' }
+  }
+})
+
+// Componente
+<template>
+  <nav>
+    <router-link to="/">Inicio</router-link>
+    <router-link :to="{ name: 'perfil', params: { id: userId }}">
+      Perfil
+    </router-link>
+  </nav>
+
+  <router-view v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component" />
+    </transition>
+  </router-view>
+</template></code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

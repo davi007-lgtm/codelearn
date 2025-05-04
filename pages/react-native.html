@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Native - CodeLearn</title>
+    <link rel="stylesheet" href="../learn-code.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Toggle modo oscuro -->
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
+    <label for="theme-toggle" class="theme-toggle-label">🌙</label>
+
+    <!-- Menú lateral -->
+    <nav class="sidebar">
+        <div class="logo">
+            <a href="../index.html" class="home-link">CodeLearn</a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-category">Fundamentos React Native</li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#componentes">Componentes Nativos</a></li>
+            <li><a href="#estilo">Estilizado</a></li>
+            
+            <li class="nav-category">Componentes UI</li>
+            <li><a href="#views">Views y Text</a></li>
+            <li><a href="#inputs">TextInput y Button</a></li>
+            <li><a href="#lists">FlatList y ScrollView</a></li>
+            <li><a href="#images">Image y ImageBackground</a></li>
+            
+            <li class="nav-category">Navegación</li>
+            <li><a href="#stack">Stack Navigation</a></li>
+            <li><a href="#tab">Tab Navigation</a></li>
+            <li><a href="#drawer">Drawer Navigation</a></li>
+            <li><a href="#params">Parámetros y Rutas</a></li>
+            
+            <li class="nav-category">APIs Nativas</li>
+            <li><a href="#gestos">Gestos</a></li>
+            <li><a href="#animaciones">Animaciones</a></li>
+            <li><a href="#storage">AsyncStorage</a></li>
+            <li><a href="#camara">Cámara y Permisos</a></li>
+            
+            <li class="nav-category">Desarrollo</li>
+            <li><a href="#debug">Debugging</a></li>
+            <li><a href="#performance">Performance</a></li>
+            <li><a href="#deploy">Deployment</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduccion" class="section">
+            <h1 class="typing-effect">React Native</h1>
+            
+            <div class="concept-card glass-card">
+                <h2>¿Qué es React Native?</h2>
+                <p>React Native es un framework de código abierto creado por Facebook para desarrollar aplicaciones móviles multiplataforma utilizando React y JavaScript/TypeScript.</p>
+                <div class="features-list">
+                    <ul>
+                        <li>Desarrollo multiplataforma</li>
+                        <li>Hot Reload</li>
+                        <li>Componentes nativos</li>
+                        <li>Gran ecosistema npm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Estructura del Proyecto</h2>
+                <pre><code>mi-app/
+  ├── android/         # Código nativo Android
+  ├── ios/            # Código nativo iOS
+  ├── src/            # Código JavaScript/TypeScript
+  │   ├── components/ # Componentes reutilizables
+  │   ├── screens/    # Pantallas
+  │   ├── navigation/ # Configuración de rutas
+  │   └── App.tsx     # Componente raíz
+  ├── package.json    # Dependencias
+  └── metro.config.js # Configuración del bundler</code></pre>
+            </div>
+        </section>
+
+        <section id="componentes" class="section">
+            <h2 class="typing-effect">Componentes</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Componente Funcional</h2>
+                <pre><code>import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+interface CardProps {
+  title: string;
+  description: string;
+}
+
+const Card: React.FC<CardProps> = ({ 
+  title, 
+  description 
+}) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.description}>
+        {description}
+      </Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  description: {
+    fontSize: 16,
+    color: '#666',
+  },
+});</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Hooks Personalizados</h2>
+                <pre><code>import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface User {
+  id: string;
+  name: string;
+}
+
+export const useUser = () => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    try {
+      const data = await AsyncStorage.getItem('user');
+      setUser(data ? JSON.parse(data) : null);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveUser = async (userData: User) => {
+    try {
+      await AsyncStorage.setItem(
+        'user', 
+        JSON.stringify(userData)
+      );
+      setUser(userData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return { user, loading, saveUser };
+};</code></pre>
+            </div>
+        </section>
+
+        <section id="navegacion" class="section">
+            <h2 class="typing-effect">Navegación</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Stack Navigation</h2>
+                <pre><code>import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+        />
+        <Stack.Screen 
+          name="Details" 
+          component={DetailsScreen}
+          options={{
+            title: 'Detalles',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerTintColor: '#fff',
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Tab Navigation</h2>
+                <pre><code>import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+const Tab = createBottomTabNavigator();
+
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+
+          switch (route.name) {
+            case 'Home':
+              iconName = 'home';
+              break;
+            case 'Profile':
+              iconName = 'person';
+              break;
+            default:
+              iconName = 'circle';
+          }
+
+          return (
+            <Icon 
+              name={iconName} 
+              size={size} 
+              color={color} 
+            />
+          );
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+};</code></pre>
+            </div>
+        </section>
+
+        <section id="apis" class="section">
+            <h2 class="typing-effect">APIs Nativas</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Gestos</h2>
+                <pre><code>import { PanResponder, Animated } from 'react-native';
+
+const DraggableCard = () => {
+  const pan = useRef(new Animated.ValueXY()).current;
+
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderMove: Animated.event(
+      [
+        null,
+        { dx: pan.x, dy: pan.y }
+      ],
+      { useNativeDriver: false }
+    ),
+    onPanResponderRelease: () => {
+      Animated.spring(pan, {
+        toValue: { x: 0, y: 0 },
+        useNativeDriver: false
+      }).start();
+    }
+  });
+
+  return (
+    <Animated.View
+      style={{
+        transform: [
+          { translateX: pan.x },
+          { translateY: pan.y }
+        ]
+      }}
+      {...panResponder.panHandlers}
+    >
+      <Text>Arrastra esta tarjeta</Text>
+    </Animated.View>
+  );
+};</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Animaciones</h2>
+                <pre><code>import { Animated, Easing } from 'react-native';
+
+const FadeInView = ({ children }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      easing: Easing.ease,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  return (
+    <Animated.View
+      style={{
+        opacity: fadeAnim,
+        transform: [{
+          translateY: fadeAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [50, 0],
+          }),
+        }],
+      }}
+    >
+      {children}
+    </Animated.View>
+  );
+};</code></pre>
+            </div>
+        </section>
+
+        <section id="performance" class="section">
+            <h2 class="typing-effect">Performance</h2>
+            
+            <div class="concept-card glass-card">
+                <h2>Optimizaciones</h2>
+                <pre><code>// Memo para evitar re-renders
+const MemoizedComponent = React.memo(({ data }) => (
+  <View>
+    <Text>{data.title}</Text>
+  </View>
+));
+
+// useCallback para funciones
+const handlePress = useCallback(() => {
+  // Lógica del evento
+}, [/* dependencias */]);
+
+// Virtualización de listas
+<FlatList
+  data={items}
+  renderItem={renderItem}
+  initialNumToRender={10}
+  maxToRenderPerBatch={10}
+  windowSize={5}
+  removeClippedSubviews={true}
+  keyExtractor={item => item.id}
+/>
+
+// Lazy loading de componentes
+const HeavyComponent = lazy(() => 
+  import('./HeavyComponent')
+);</code></pre>
+            </div>
+
+            <div class="concept-card glass-card">
+                <h2>Herramientas de Debug</h2>
+                <pre><code>// Flipper
+import { addPlugin } from 'react-native-flipper';
+
+// Performance Monitor
+import { PerformanceObserver } from 'react-native';
+
+// Chrome DevTools
+if (__DEV__) {
+  import('./ReactotronConfig').then(() => {
+    console.log('Reactotron Configured');
+  });
+}
+
+// Métricas personalizadas
+performance.mark('startProcess');
+// ... código a medir
+performance.mark('endProcess');
+performance.measure(
+  'processTime',
+  'startProcess',
+  'endProcess'
+);</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Script para el toggle del tema
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Script para marcar la sección actual
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
