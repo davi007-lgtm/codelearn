@@ -108,14 +108,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialización
     updateScrollProgress();
 
-    // Añadir efecto parallax a las tarjetas
+    // Añadir efectos a las tarjetas
     const cards = document.querySelectorAll('.concept-card');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
     cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => handleCardParallax(e, card));
-        card.addEventListener('mouseleave', () => {
-            if (prefersReducedMotion) return;
-            card.style.transform = 'none';
-        });
+        if (!isMobile) {
+            // Efecto parallax en desktop
+            card.addEventListener('mousemove', (e) => handleCardParallax(e, card));
+            card.addEventListener('mouseleave', () => {
+                if (prefersReducedMotion) return;
+                card.style.transform = 'none';
+            });
+        } else {
+            // Efecto tap en móvil
+            card.addEventListener('touchstart', () => {
+                if (prefersReducedMotion) return;
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                if (prefersReducedMotion) return;
+                card.style.transform = 'none';
+            });
+        }
     });
 
     // Animaciones de texto

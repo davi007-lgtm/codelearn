@@ -1216,32 +1216,75 @@ pre, code {
 }
 
 /* Responsive */
+/* Estilos móviles */
 @media (max-width: 768px) {
-    .concept-content {
+    /* Ajustes generales */
+    .content {
         padding: 1rem;
     }
 
-    .concept-title {
-        font-size: 2rem;
+    /* Ajustes de la cuadrícula */
+    .language-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
     }
 
-    .concept-subtitle {
+    /* Mejoras en las tarjetas */
+    .concept-card {
+        padding: 1.25rem;
+        margin: 0.5rem 0;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .concept-card h2 {
         font-size: 1.5rem;
+        margin-bottom: 0.5rem;
     }
 
-    .code-block {
-        padding: 1rem;
-        margin: 1rem 0;
+    .concept-card p {
+        font-size: 1rem;
+        line-height: 1.4;
     }
 
-    .code-block code {
-        font-size: 0.85rem;
+    /* Mejoras en la navegación */
+    .sidebar {
+        width: 85%;
+        transform: translateX(-100%);
     }
 
-    .concept-nav {
-        position: relative;
-        top: 0;
-        margin-top: 1rem;
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Mejoras en el encabezado */
+    .page-header {
+        padding: 1rem 0;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Mejoras en los botones */
+    .menu-toggle {
+        display: flex;
+        padding: 0.75rem;
+        border-radius: 8px;
+        background: var(--card-bg);
+        box-shadow: 0 2px 8px var(--shadow-color);
+    }
+
+    /* Mejoras en el scroll */
+    .scroll-progress {
+        height: 4px;
     }
 }
 
